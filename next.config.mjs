@@ -8,7 +8,8 @@ const config = {
   images: {
     unoptimized: true,
   },
-  output: "export"
+  output: "export",
+  basePath: "/root-docs"
 }
 
 export default withMDX(config)
