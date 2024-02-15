@@ -9,7 +9,7 @@ const config = {
     unoptimized: true,
   },
   output: "export",
-  basePath: "/root-docs"
+  basePath: process.env.CI ? "/root-docs" : undefined
 }
 
 export default withMDX(config)
