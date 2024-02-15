@@ -5,9 +5,11 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev",
-    "start": "next start"
+    "start": "next start",
+    "algolia": "node ./.github/algoliaSync.mjs"
   },
   "dependencies": {
+    "algoliasearch": "^4.22.1",
     "fumadocs-core": "8.2.0",
     "fumadocs-mdx": "8.0.3",
     "fumadocs-ui": "8.2.0",
