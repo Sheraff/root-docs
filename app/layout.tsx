@@ -23,7 +23,6 @@ export const metadata: Metadata = {
     template: '%s | 🌳 Root Docs',
     default: '🌳 Root Docs',
   },
-  description: 'The offline-first fullstack PWA template.',
 }
 
 export default function Layout({ children }: { children: ReactNode }) {
