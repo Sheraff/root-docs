@@ -33,7 +33,7 @@ export async function generateStaticParams() {
 }
 
 export function generateMetadata({ params }: { params: { slug?: string[] } }) {
-  const page = getPage(params.slug)
+  const page = getPage(params.slug,)
 
   if (page == null) notFound()
 

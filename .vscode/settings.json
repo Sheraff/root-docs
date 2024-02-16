@@ -2,6 +2,7 @@
 	"files.exclude": {
 		".next": true,
 		"out": true,
+		"**/*.tsbuildinfo": true
 	},
 	"explorer.fileNesting.patterns": {
 		"*package.json": "${capture}.eslint*, ${capture}.prettier*, ${capture}pnpm*, ${capture}turbo*, ${capture}tsconfig.json, ${capture}vite.config.ts, ${capture}vitest.*, ${capture}.gitignore, ${capture}esbuild.*, ${capture}knip.*, ${capture}.nvmrc, ${capture}.cspell.json, ${capture}*.dict.txt",
@@ -9,4 +10,31 @@
 		"*.ts": "${capture}.ts.*, ${capture}.d.ts*, ${capture}.js*, ${capture}.mjs*",
 		"*.css": "${capture}.css.*"
 	},
+	"eslint.runtime": "node",
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": "always"
+	},
+	"eslint.options": {
+		"extensions": [
+			".js",
+			".jsx",
+			".md",
+			".mdx",
+			".ts",
+			".tsx"
+		]
+	},
+	"eslint.validate": [
+		"markdown",
+		"mdx",
+		"javascript",
+		"javascriptreact",
+		"typescript",
+		"typescriptreact"
+	],
+	"cSpell.spellCheckOnlyWorkspaceFiles": true,
+	"files.associations": {
+		"**/.github/**/*.yml": "github-actions-workflow"
+	},
+	"typescript.tsdk": "node_modules/typescript/lib"
 }

@@ -1,7 +1,7 @@
 //@ts-check
-import algoliasearch from 'algoliasearch'
+import algoliasearch from "algoliasearch"
 import { readFileSync } from "node:fs"
-import { sync } from 'fumadocs-core/search-algolia/server'
+import { sync } from "fumadocs-core/search-algolia/server"
 import { join } from "node:path"
 
 /**
@@ -19,7 +19,7 @@ import { join } from "node:path"
 
 // Hacking the build step because fumadocs uses a webpack plugin to generate pages data as a virtual import
 // So we output the data as a static api route GET:/api/pages and we read it here
-const rawPages = readFileSync(join(import.meta.dirname, '../out/api/pages'), 'utf-8')
+const rawPages = readFileSync(join(import.meta.dirname, "../out/api/pages"), "utf-8")
 /** @type {Page[]} */
 const allDocs = JSON.parse(rawPages)
 
@@ -30,6 +30,6 @@ sync(client, {
 		_id: doc.url,
 		url: doc.url,
 		title: doc.data.title,
-		structured: doc.data.exports.structuredData
-	}))
+		structured: doc.data.exports.structuredData,
+	})),
 })
