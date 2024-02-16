@@ -1,0 +1,45 @@
+---
+title: Dev Server
+description: Foo michel
+icon: Terminal
+---
+
+import { Step, Steps } from "fumadocs-ui/components/steps"
+
+## requests in dev mode
+
+In production, all requests hit the server. Requests asking for client assets are simply served statically built files.
+
+In development, most of the work is done by Vite for a better Hot Module Replacement (HRM) experience. So requests asking for client assets are served by Vite, and requests aiming at the server are proxied
+
+<Steps>
+	<Step>
+		Vite dev server on port `3001`
+	</Step>
+
+    <Step>
+    	Vite proxies `/api` requests to port `3000`
+    </Step>
+
+    <Step>
+    	The server esbuild has a proxy server listening on port `3000`, and proxies all requests to the server on port `8877`
+    </Step>
+
+    <Step>
+    	The server esbuild watches the server files and restarts the server on changes. When the server is ready it listens on port `8877`
+    </Step>
+
+</Steps>
+
+This long chain of requests is necessary to have a good HRM experience for both the client and the server.
+
+-   most requests are served by Vite, which has a very good HRM
+-   if the server is currently restarting (there is no HRM for the server, only restarts), the server proxy will stall the request until the server is ready again
+
+## dev processes
+
+-   `/script` 1-time esbuild for vite/esbuild plugins
+-   `/client` vite server + proxy server
+-   `/assets` esbuild watch
+-   `/worker` esbuild watch
+-   `/server` esbuild watch + proxy server

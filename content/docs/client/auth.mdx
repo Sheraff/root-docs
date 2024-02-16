@@ -1,0 +1,110 @@
+---
+title: Authentication
+description: Foo michel
+icon: LockKeyhole
+---
+
+import { Step, Steps } from "fumadocs-ui/components/steps"
+
+Simple OAuth authentication for your app, using 3rd party providers like Google, Facebook, Twitter, GitHub, and more.
+
+```tsx
+const auth = useAuthContext()
+
+switch (auth.type) {
+	case "signed-in":
+		return (
+			<LoggedIn
+				userId={auth.userId}
+				signOut={auth.signOut}
+				linkAccount={auth.linkAccount}
+				providers={auth.providers}
+			/>
+		)
+	case "creating-account":
+		return (
+			<CreateAccount
+				createAccount={auth.createAccount}
+				cancelCreateAccount={auth.cancelCreateAccount}
+				providers={auth.providers}
+			/>
+		)
+	case "unauthenticated":
+		return (
+			<NotLoggedIn
+				submitInviteCode={auth.submitInviteCode}
+				signIn={auth.signIn}
+				providers={auth.providers}
+			/>
+		)
+}
+```
+
+## Sign-up
+
+<Steps>
+	<Step>
+		### Create an account
+		`auth.type: "unauthenticated"`
+		
+		On their first visit, users can enter an invite code to create an account
+	</Step>
+
+    <Step>
+    	### Select a provider
+    	`auth.type: "creating-account"`
+
+    	With the code, users then select a provider to authenticate with (Google, GitHub, Twitch, etc.)
+    </Step>
+
+    <Step>
+    	### Authenticate
+    	Users are redirected to the provider's site to authenticate
+    </Step>
+
+    <Step>
+    	### Done
+    	`auth.type: "signed-in"`
+
+    	Once authenticated, users are redirected back to your app
+    </Step>
+
+</Steps>
+
+## Sign-in
+
+<Steps>
+	<Step>
+		### Already have an account?
+		`auth.type: "unauthenticated"`
+		
+		Users can simply click on a provider they have used to sign-in before
+	</Step>
+
+    <Step>
+    	### Done
+    	`auth.type: "signed-in"`
+
+    	Users are automatically signed in
+    </Step>
+
+</Steps>
+
+## Connect accounts
+
+<Steps>
+	<Step>
+		### Already signed in?
+		`auth.type: "signed-in"`
+		
+		Users can connect click on additional providers to link them to their account
+	</Step>
+
+    <Step>
+    	### Done
+    	`auth.type: "signed-in"`
+
+    	Users are redirected back to your app
+    </Step>
+
+</Steps>

@@ -1,0 +1,17 @@
+---
+title: API Client
+description: Foo michel
+icon: Cable
+---
+
+Type-safe API client with tanstack query.
+
+```ts
+import { tracksRoute } from "server/api/routes/tracks"
+
+const track = useApiQuery(tracksRoute, {
+	Querystring: { id: "42" },
+})
+```
+
+See [Server API](../server/api) for more information.

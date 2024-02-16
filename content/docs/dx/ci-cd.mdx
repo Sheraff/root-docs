@@ -1,0 +1,45 @@
+---
+title: GitHub Actions
+description: Foo michel
+icon: Github
+---
+
+import { File, Files } from "fumadocs-ui/components/files"
+import { Step, Steps } from "fumadocs-ui/components/steps"
+
+## Pull Request workflow
+
+Test, version, build, deploy.
+
+## Build artifact
+
+The `bundle.tar.xz` release artifact uploaded to GitHub contains all the files needed for a production deployment.
+
+<Files>
+	<File title="bundle.tar.xz" defaultOpen>
+		<File title="dist" children={[]} />
+		<File title="package.json" />
+		<File title="pnpm-lock.yaml" />
+	</File>
+</Files>
+
+## Webhooks
+
+GHA can POST to your infra so it knows to download the latest release artifact and deploy it.
+
+<Steps>
+	<Step>
+		Download and unpack the artifact
+	</Step>
+
+    <Step>
+    	Provide your `.env` file
+    </Step>
+
+    <Step>
+    	Install only the dependencies required for runtime
+
+    	`pnpm install --frozen-lockfile --prod`
+    </Step>
+
+</Steps>

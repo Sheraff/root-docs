@@ -1,0 +1,62 @@
+---
+title: Web Workers
+description: Foo michel
+icon: Cpu
+---
+
+Type-safe workers are easy to use. They just use Vite's built-in worker-loader.
+
+```tsx title="my-component.tsx"
+import type { Incoming, Outgoing } from "foo.worker"
+import Worker from "foo.worker?worker"
+
+const worker = new Worker()
+
+// type-safe postMessage
+function post<I extends Incoming["type"]>(
+	type: I,
+	data: Extract<Incoming, { type: I }>["data"],
+	transfer?: Transferable[]
+) {
+	worker.postMessage({ type, data }, { transfer })
+}
+
+// type-safe onmessage
+worker.addEventListener("message", ({ data: event }: MessageEvent<Outgoing>) => {
+	...
+})
+```
+
+```ts title="foo.worker.ts"
+/// <reference lib="webworker" />
+
+export type Incoming = { id: number } & (
+	| { type: "add"; data: { a: number; b: number } }
+	| { type: "sub"; data: { a: number; b: number } }
+)
+export type Outgoing = { id: number } & (
+	| { type: "add"; data: { result: number } }
+	| { type: "sub"; data: { result: number } }
+)
+
+self.onmessage = (e: MessageEvent<Incoming>) => handleMessage(e.data)
+
+function post<I extends Incoming>(
+	sourceEvent: I,
+	data: Extract<Outgoing, { type: I["type"] }>["data"],
+	transfer?: Transferable[]
+) {
+	self.postMessage({ id: sourceEvent.id, type: sourceEvent.type, data }, { transfer })
+}
+
+function handleMessage(event: Incoming) {
+	switch (event.type) {
+		case "add":
+			post(event, { result: event.data.a + event.data.b })
+			break
+		case "sub":
+			post(event, { result: event.data.a - event.data.b })
+			break
+	}
+}
+```

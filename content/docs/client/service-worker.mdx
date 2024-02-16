@@ -1,0 +1,53 @@
+---
+title: Service Worker
+description: Foo michel
+icon: WifiOff
+---
+
+import { Cards, Card } from "fumadocs-ui/components/card"
+import { WifiOff } from "lucide-react"
+
+## Update pop-up
+
+Easily prompt the user to instantly update their app when a new version is available, and already ready to use.
+
+```tsx
+const [shouldUpdate, update] = useServiceWorkerUpdate()
+
+if (shouldUpdate) {
+	return (
+		<div>
+			<p>A new version is available</p>
+			<button onClick={update}>Update</button>
+		</div>
+	)
+}
+```
+
+## Service Worker communication
+
+Easily communicate with the Service Worker for advanced offline capabilities. Of course, `postMessage` is type-safe.
+
+```tsx
+const { data: sw } = useServiceWorker()
+useEffect(() => {
+	if (!sw) return
+	sw.postMessage({
+		type: "TASK",
+		payload: {
+			foo: "Do this thing",
+		},
+	})
+}, [sw])
+```
+
+---
+
+<Cards>
+	<Card
+		title="Service Worker"
+		href="../service-worker"
+		description="Learn more about service-worker capabilities"
+		icon={<WifiOff />}
+	/>
+</Cards>

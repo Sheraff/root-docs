@@ -1,16 +1,65 @@
 ---
-title: Hello World
+title: Root
 description: The offline-first fullstack PWA template.
-icon: GitCompareArrows
+icon: TreeDeciduous
 ---
 
 import { Cards, Card } from "fumadocs-ui/components/card"
+import { Monitor, Server, WifiOff } from "lucide-react"
+import { File, Files } from "fumadocs-ui/components/files"
 
-Welcome to the docs! You can start writing documents in `/content/docs`.
+## Structure
+
+A mono-repo structure, with the following packages:
+
+<Files>
+	<File title="client" defaultOpen>
+		<File title="src" defaultOpen>
+			<File title="App.tsx" />
+		</File>
+		<File title="index.html" />
+		<File title="main.tsx" />
+	</File>
+	<File title="server" defaultOpen>
+		<File title="src" defaultOpen>
+			<File title="app.ts" />
+		</File>
+	</File>
+	<File title="worker" defaultOpen>
+		<File title="src" defaultOpen>
+			<File title="index.ts" />
+		</File>
+	</File>
+	<File title="script" defaultOpen>
+		<File title="src" children={[]} />
+	</File>
+	<File title="shared" defaultOpen>
+		<File title="src" children={[]} />
+	</File>
+	<File title="assets" defaultOpen>
+		<File title="src" children={[]} />
+	</File>
+</Files>
 
 ## What is Next?
 
 <Cards>
-	<Card title="Learn more about Next.js" href="https://nextjs.org/docs" description="" />
-	<Card title="Learn more about Fumadocs" href="https://fumadocs.vercel.app" description="" />
+	<Card
+		title="Client"
+		href="./client"
+		description="Learn more about client-side capabilities"
+		icon={<Monitor />}
+	/>
+	<Card
+		title="Server"
+		href="./server"
+		description="Learn more about server-side capabilities"
+		icon={<Server />}
+	/>
+	<Card
+		title="Service Worker"
+		href="./service-worker"
+		description="Learn more about service-worker capabilities"
+		icon={<WifiOff />}
+	/>
 </Cards>

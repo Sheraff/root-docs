@@ -1,0 +1,15 @@
+---
+title: Database
+description: Foo michel
+icon: Database
+---
+
+Local WASM SQLite database, synced with the server. The differences with the server are automatically resolved when online.
+
+```ts
+const other = useDbQuery<{ id: string; name: string; position: number }>({
+	dbName: "main",
+	query: sql`SELECT id, name, position FROM tracks WHERE id = ?`,
+	bindings: [id],
+})
+```

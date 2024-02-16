@@ -1,0 +1,29 @@
+---
+title: CSS Modules
+description: Foo michel
+icon: FileBox
+---
+
+CSS Modules for style scoping
+
+```css title="foo.module.css"
+.foo {
+	color: red;
+}
+.special {
+	color: green;
+}
+```
+
+```tsx title="foo.tsx"
+import classes from "./foo.module.css"
+import clsx from "clsx"
+
+export function Foo({ flag }: { flag: boolean }) {
+	return (
+		<div className={clsx(classes.foo, flag && classes.special)}>
+			Hello
+		</div>
+	)
+}
+```

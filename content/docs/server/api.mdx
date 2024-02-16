@@ -1,0 +1,60 @@
+---
+title: API Server
+description: Foo michel
+icon: Cable
+---
+
+Type-safe API server with JSON schema validation.
+
+```ts
+const schema = {
+	response: {
+		200: {
+			type: "object",
+			properties: {
+				id: { type: "string" },
+				name: { type: "string" },
+				position: { type: "number" },
+			},
+			required: ["id", "name"],
+			additionalProperties: false,
+		},
+		404: {
+			type: "object",
+			properties: {
+				error: { type: "string" },
+			},
+			required: ["error"],
+			additionalProperties: false,
+		},
+	},
+	querystring: {
+		type: "object",
+		properties: {
+			id: { type: "string" },
+		},
+		required: ["id"],
+		additionalProperties: false,
+	},
+} as const satisfies BaseSchema
+
+// this is the part that is shared between the client and the server
+export const tracksRoute = define<typeof schema>({
+	url: "/api/tracks",
+	method: "get",
+})
+
+export const handler = procedure(schema, definition, {
+	handler(request, reply) {
+		const { id } = request.query
+		const track = tracks.find((track) => track.id === id)
+		if (track) {
+			reply.code(200).send(track)
+		} else {
+			reply.code(404).send({ error: "Track not found" })
+		}
+	},
+})
+```
+
+With Fastify, using a JSON schema to validate the inputs and outputs makes the requests have 10-20% more throughput. And using our own `define` and `procedure` functions we can use the same schema to provide type safety on the client side and on the server side.
