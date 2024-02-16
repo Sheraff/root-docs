@@ -40,8 +40,6 @@ jobs:
         with:
           version: 8.x
           run_install: false
-      - name: print config
-        run: cat next.config.mjs
       - name: Restore cache
         uses: actions/cache@v4
         with:
@@ -52,6 +50,9 @@ jobs:
           # If source files changed but packages didn't, rebuild from a prior cache.
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('**/pnpm-lock.yaml') }}-
+      - name: Create env file
+        shell: bash
+        run: echo "${{ secrets.CI_ENV_FILE }}" > .env
       - name: Install dependencies
         run: pnpm i
       - name: Build with Next.js
