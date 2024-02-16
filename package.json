@@ -5,7 +5,8 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev",
-    "algolia": "node ./.github/algoliaSync.mjs"
+    "algolia": "node ./.github/algoliaSync.mjs",
+    "spell": "cspell --config .cspell.json --quiet --gitignore '*' 'content/**/*.mdx' 'app/**/*' 'components/**/*'"
   },
   "dependencies": {
     "algoliasearch": "^4.22.1",
@@ -22,6 +23,7 @@
     "@types/node": "20.11.19",
     "@types/react": "18.2.55",
     "@types/react-dom": "18.2.19",
+    "cspell": "^8.3.2",
     "typescript": "5.3.3"
   }
 }

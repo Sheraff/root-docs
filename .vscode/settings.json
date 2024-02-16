@@ -1,7 +1,12 @@
 {
-	"cSpell.words": [
-		"algoliasearch",
-		"fumadocs",
-		"unoptimized"
-	]
+	"files.exclude": {
+		".next": true,
+		"out": true,
+	},
+	"explorer.fileNesting.patterns": {
+		"*package.json": "${capture}.eslint*, ${capture}.prettier*, ${capture}pnpm*, ${capture}turbo*, ${capture}tsconfig.json, ${capture}vite.config.ts, ${capture}vitest.*, ${capture}.gitignore, ${capture}esbuild.*, ${capture}knip.*, ${capture}.nvmrc, ${capture}.cspell.json, ${capture}*.dict.txt",
+		"*.js": "${capture}.js.*, ${capture}.d.ts*",
+		"*.ts": "${capture}.ts.*, ${capture}.d.ts*, ${capture}.js*, ${capture}.mjs*",
+		"*.css": "${capture}.css.*"
+	},
 }

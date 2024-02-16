@@ -1,0 +1,4 @@
+algoliasearch
+fumadocs
+lucide
+unoptimized
