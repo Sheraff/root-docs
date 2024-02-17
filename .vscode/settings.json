@@ -38,6 +38,7 @@
 	},
 	"typescript.tsdk": "node_modules/typescript/lib",
 	"[mdx]": {
-		"editor.wordWrap": "on",
+		"editor.wordWrapColumn": 100,
+		"editor.wordWrap": "bounded"
 	}
 }
