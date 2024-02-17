@@ -57,6 +57,66 @@ A mono-repo structure, with the following packages:
 	</File>
 </Files>
 
+## Tools & Libraries
+
+import { CardGrid, CardGridItem } from "components/CardGrid"
+
+<CardGrid>
+	<CardGridItem
+		title="CSS Modules"
+		href="https://github.com/css-modules/css-modules/blob/master/README.md"
+		src={"/tools/css-modules.png"}
+	>
+		The ideal way to include component-level CSS
+	</CardGridItem>
+	<CardGridItem title="esbuild" href="https://esbuild.github.io/" src={"/tools/esbuild.svg"}>
+		An extremely fast bundler for the web
+	</CardGridItem>
+	<CardGridItem
+		title="Tanstack Query"
+		href="https://tanstack.com/query"
+		src={
+			<div className="flex items-center text-transparent bg-clip-text min-h-16 text-4xl bg-gradient-to-r from-red-500 to-amber-500">
+				Tanstack Query
+			</div>
+		}
+	>
+		Powerful asynchronous state management
+	</CardGridItem>
+	<CardGridItem title="Fastify" href="https://fastify.dev/" src={"/tools/fastify.svg"}>
+		Fast and low overhead web framework
+	</CardGridItem>
+	<CardGridItem
+		title="GitHub Actions"
+		href="https://github.com/features/actions"
+		src={"/tools/github.svg"}
+	>
+		Automate your workflow from idea to production
+	</CardGridItem>
+	<CardGridItem title="Knip" href="https://knip.dev/" src={"/tools/knip.svg"}>
+		Find unused files, dependencies and exports
+	</CardGridItem>
+	<CardGridItem title="React" href="https://react.dev/" src={"/tools/react.svg"}>
+		The library for web and native user interfaces
+	</CardGridItem>
+	<CardGridItem title="Turborepo" href="https://turbo.build/repo" src={"/tools/turbo.png"}>
+		The build system that makes ship happen
+	</CardGridItem>
+	<CardGridItem title="Valibot" href="https://valibot.dev/" src={"/tools/valibot.svg"}>
+		Validate unknown data, with bundle size, type safety and developer experience in mind
+	</CardGridItem>
+	<CardGridItem title="Vite" href="https://vitejs.dev/" src={"/tools/vite.svg"}>
+		Next Generation Frontend Tooling
+	</CardGridItem>
+	<CardGridItem title="Vitest" href="https://vitest.dev/" src={"/tools/vitest.svg"}>
+		Next Generation Testing Framework
+	</CardGridItem>
+	<CardGridItem title="vlcn" href="https://vlcn.io/" src={"/tools/vlcn.png"}>
+		SQLite as a collaborative application file format for multiplayer, local & offline-first
+		software
+	</CardGridItem>
+</CardGrid>
+
 ## What is Next?
 
 <Cards>
