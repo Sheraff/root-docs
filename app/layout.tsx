@@ -1,5 +1,6 @@
 import { RootProvider } from 'fumadocs-ui/provider'
 import 'fumadocs-ui/style.css'
+import './globals.css'
 import { Inter } from 'next/font/google'
 import type { ReactNode } from 'react'
 import { pageTree } from './source'

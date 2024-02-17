@@ -1,4 +1,6 @@
 algoliasearch
 fumadocs
 lucide
+tailwindcss
+Tanstack
 unoptimized
