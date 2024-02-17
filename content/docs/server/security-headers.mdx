@@ -1,0 +1,87 @@
+---
+title: Security Headers
+description: Foo michel
+icon: ShieldCheck
+---
+
+In a production build, the `.html` files served by `server/src/frontend` are sent with a few security headers.
+
+## Strict-Transport-Security
+
+With the [Strict-Transport-Security](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security) header, the server tells the browser to only connect to the server over HTTPS.
+
+```http
+Strict-Transport-Security: max-age=31536000; includeSubDomains;
+```
+
+Using this header is a good idea, but it can be dangerous if you are not sure that your server will always be available over HTTPS (or `localhost`). If you are not sure, you can set the `max-age` to a lower value, like `max-age=3153600` (1 year) or `max-age=2592000` (30 days).
+
+If you are confident that this will _always_ be the case, you can add the `preload` directive to the header, which will tell the browser to always use HTTPS, even for the first request. This is useful if you want to submit your site to the [HSTS Preload List](https://hstspreload.org/).
+
+```http
+Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+```
+
+## Content Security Policy
+
+The [Content-Security-Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy) header tells the browser which resources are allowed to be loaded on the page. This can help prevent XSS attacks.
+
+This framework has set strict policy directives for this header, allowing only resources from the same origin. If you need to fetch resources from other origins, you will need to modify the `server/src/frontend` code.
+
+```http
+Content-Security-Policy:
+	default-src 'self';
+	script-src 'self' 'wasm-unsafe-eval'; # allow WebAssembly
+	style-src 'self';
+	style-src-elem 'self' 'unsafe-inline'; # allow <style> tags
+	img-src 'self' data:;
+	font-src 'self';
+	connect-src 'self';
+	media-src 'self';
+	object-src none;
+	frame-src none;
+	worker-src 'self';
+	form-action none;
+	base-uri 'self';
+	manifest-src 'self';
+	upgrade-insecure-requests;
+	frame-ancestors 'self'
+```
+
+## Permissions-Policy
+
+The [Permissions-Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Permissions-Policy) header is used to control which features and APIs can be used in the browser. This can help prevent unwanted behavior, like using the microphone or camera without the user's consent.
+
+This framework has set strict policy directives for this header, allowing _no_ features and APIs. If you need to use some features or APIs, you will need to modify the `server/src/frontend` code.
+
+```http
+Permissions-Policy:
+	accelerometer=(),
+	attribution-reporting=(),
+	autoplay=(),
+	browsing-topics=(),
+	camera=(),
+	display-capture=(),
+	encrypted-media=(),
+	fullscreen=(),
+	gamepad=(),
+	geolocation=(),
+	gyroscope=(),
+	hid=(),
+	identity-credentials-get=(),
+	idle-detection=(),
+	local-fonts=(self),
+	magnetometer=(),
+	microphone=(),
+	midi=(),
+	otp-credentials=(),
+	payment=(),
+	picture-in-picture=(),
+	publickey-credentials-get=(),
+	screen-wake-lock=(),
+	serial=(),
+	storage-access=(),
+	usb=(),
+	window-management=(),
+	xr-spatial-tracking=()
+```
