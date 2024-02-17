@@ -57,4 +57,6 @@ export const handler = procedure(schema, definition, {
 })
 ```
 
-With Fastify, using a JSON schema to validate the inputs and outputs makes the requests have 10-20% more throughput. And using our own `define` and `procedure` functions we can use the same schema to provide type safety on the client side and on the server side.
+With Fastify, using a JSON schema to validate the inputs and outputs makes the requests have 10-20% more throughput <sup>[1](https://fastify.dev/docs/latest/Reference/Routes/#routes-options)</sup>. And using our own `define` and `procedure` functions we can use the same schema to provide type safety on the client side and on the server side.
+
+Under the hood, fastify uses [Ajv](https://ajv.js.org/) to validate the schema at runtime, and we use [json-schema-to-ts](https://github.com/ThomasAribart/json-schema-to-ts) to obtain TypeScript types from the schemas.
