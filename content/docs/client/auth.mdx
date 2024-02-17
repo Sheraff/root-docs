@@ -44,7 +44,7 @@ switch (auth.type) {
 
 <Steps>
 	<Step>
-		### Create an account
+		### Have an invite code?
 		`auth.type: "unauthenticated"`
 		
 		On their first visit, users can enter an invite code to create an account
@@ -82,6 +82,11 @@ switch (auth.type) {
 	</Step>
 
     <Step>
+    	### Authenticate
+    	Users are redirected to the provider's site to authenticate
+    </Step>
+
+    <Step>
     	### Done
     	`auth.type: "signed-in"`
 
@@ -97,8 +102,13 @@ switch (auth.type) {
 		### Already signed in?
 		`auth.type: "signed-in"`
 		
-		Users can connect click on additional providers to link them to their account
+		Users can click on additional providers to link them to their account
 	</Step>
+
+    <Step>
+    	### Authenticate
+    	Users are redirected to the provider's site to authenticate
+    </Step>
 
     <Step>
     	### Done
