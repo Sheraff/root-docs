@@ -7,5 +7,6 @@ module.exports = {
 	content: [
 		'./node_modules/fumadocs-ui/dist/**/*.js',
 		'./components/**/*.{js,ts,jsx,tsx,mdx}',
+		'./content/**/*.{js,ts,jsx,tsx,mdx}',
 	],
 }
