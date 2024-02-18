@@ -44,7 +44,7 @@ export const tracksRoute = define<typeof schema>({
 	method: "get",
 })
 
-export const handler = procedure(schema, definition, {
+export const handler = procedure(schema, tracksRoute, {
 	handler(request, reply) {
 		const { id } = request.query
 		const track = tracks.find((track) => track.id === id)
