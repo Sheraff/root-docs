@@ -1,7 +1,7 @@
 ---
 title: GitHub Actions
 description: Foo michel
-icon: Github
+icon: Workflow
 ---
 
 import { File, Files } from "fumadocs-ui/components/files"
@@ -10,6 +10,12 @@ import { Step, Steps } from "fumadocs-ui/components/steps"
 ## Pull Request workflow
 
 Test, version, build, deploy.
+
+### Test
+
+Create a _Secrets and variables_ > _Actions_ > _Repository secrets_ variable named `CI_ENV_FILE` containing your `.env` file contents.
+
+See `.env.example` file to know which variables are required.
 
 ## Build artifact
 
