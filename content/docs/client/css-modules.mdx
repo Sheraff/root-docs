@@ -4,9 +4,31 @@ description: Foo michel
 icon: FileBox
 ---
 
-CSS Modules for style scoping
+We use CSS Modules for our styles as the best way to include component-level CSS.
 
-```css title="foo.module.css"
+## Basic Usage
+
+CSS Modules can be used to import styles into a component. The imported object contains the class names as properties that can be used in the component.
+
+```css title="Foo.module.css"
+.foo {
+	color: red;
+}
+```
+
+```tsx title="Foo.tsx"
+import classes from "./Foo.module.css"
+
+export function Foo() {
+	return <div className={classes.foo}>Hello</div>
+}
+```
+
+## Dynamic Classes
+
+We use `clsx` to combine multiple classes together based on state.
+
+```css title="Foo.module.css"
 .foo {
 	color: red;
 }
@@ -15,15 +37,52 @@ CSS Modules for style scoping
 }
 ```
 
-```tsx title="foo.tsx"
-import classes from "./foo.module.css"
+```tsx title="Foo.tsx"
+import classes from "./Foo.module.css"
 import clsx from "clsx"
 
-export function Foo({ flag }: { flag: boolean }) {
+export function Foo() {
+	const [flag, setFlag] = useState(false)
+	return <div className={clsx(classes.foo, flag && classes.special)}>Hello</div>
+}
+```
+
+## Injecting styles
+
+To "pass state" from JSX to CSS, we can use CSS variables.
+
+```css title="Foo.module.css"
+.foo {
+	color: var(--foo-color, red);
+}
+```
+
+```tsx title="Foo.tsx"
+import classes from "./Foo.module.css"
+
+export function Foo() {
+	const [color, setColor] = useState("red")
 	return (
-		<div className={clsx(classes.foo, flag && classes.special)}>
+		<div className={classes.foo} style={{ "--foo-color": color }}>
 			Hello
 		</div>
 	)
 }
+```
+
+## Type-Safe Styles
+
+A common issue with CSS Modules is that the class names are not type-safe. We use a `tcm` watcher to continuously generate hidden TypeScript files that insure the class names are correct. It is not possible to use a class name that does not exist and still have `pnpm tsc` pass.
+
+This also provides autocompletion for class names in VSCode.
+
+```css title="Foo.module.css"
+.foo {
+	color: var(--foo-color, red);
+}
+```
+
+```tsx title="Foo.tsx"
+import classes from "./Foo.module.css"
+//     ^? const classes: { foo: string }
 ```
