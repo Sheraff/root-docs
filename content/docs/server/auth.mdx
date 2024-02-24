@@ -4,6 +4,9 @@ description: Foo michel
 icon: LockKeyhole
 ---
 
+import { Cards, Card } from "fumadocs-ui/components/card"
+import { LockKeyhole } from "lucide-react"
+
 Simple OAuth authentication for your app, using 3rd party providers like Google, GitHub, Twitch, and more. With session cookies, and a dedicated auth database, you can keep your users logged in.
 
 ## Invite codes
@@ -21,3 +24,14 @@ The sessions are handled by the `sessionsStore` and are stored in the dedicated 
 ## User ID
 
 The user ID is a unique identifier for each user. It is used to match the user with their session and multiple OAuth providers. This ID can be public as it doesn't contain any sensitive information, and is not used for authentication. It is stored on the client side in an unencrypted cookie, this is what signifies to the client app that the user is logged in.
+
+## See also
+
+<Cards>
+	<Card
+		title="Client auth"
+		href="../client/auth"
+		description="See the client side documentation for the authentication process"
+		icon={<LockKeyhole />}
+	/>
+</Cards>

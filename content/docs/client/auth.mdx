@@ -5,6 +5,8 @@ icon: LockKeyhole
 ---
 
 import { Step, Steps } from "fumadocs-ui/components/steps"
+import { Cards, Card } from "fumadocs-ui/components/card"
+import { LockKeyhole } from "lucide-react"
 
 Simple OAuth authentication for your app, using 3rd party providers like Google, Facebook, Twitter, GitHub, and more.
 
@@ -118,3 +120,14 @@ switch (auth.type) {
     </Step>
 
 </Steps>
+
+## See also
+
+<Cards>
+	<Card
+		title="Server auth"
+		href="../server/auth"
+		description="See the server side documentation for the authentication process"
+		icon={<LockKeyhole />}
+	/>
+</Cards>

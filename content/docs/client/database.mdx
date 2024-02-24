@@ -4,6 +4,9 @@ description: Foo michel
 icon: Database
 ---
 
+import { Cards, Card } from "fumadocs-ui/components/card"
+import { Database } from "lucide-react"
+
 Local WASM SQLite database, synced with the server. The differences with the server are automatically resolved when online.
 
 ```ts
@@ -13,3 +16,14 @@ const other = useDbQuery<{ id: string; name: string; position: number }>({
 	bindings: [id],
 })
 ```
+
+## See also
+
+<Cards>
+	<Card
+		title="Server DB"
+		href="../server/databases"
+		description="See the server side documentation for the databases"
+		icon={<Database />}
+	/>
+</Cards>

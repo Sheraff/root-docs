@@ -5,6 +5,8 @@ icon: Database
 ---
 
 import { Callout } from "fumadocs-ui/components/callout"
+import { Cards, Card } from "fumadocs-ui/components/card"
+import { Database } from "lucide-react"
 
 SQLite is cheap, create as many databases as you want. It's a good way to separate your data.
 
@@ -13,3 +15,14 @@ CRDTs are a good way to handle distributed data, this is what allows us to have 
 <Callout title="Todo" type="warn">
 	Handle migrations
 </Callout>
+
+## See also
+
+<Cards>
+	<Card
+		title="Client DB"
+		href="../client/database"
+		description="See the client side documentation for the wasm database"
+		icon={<Database />}
+	/>
+</Cards>

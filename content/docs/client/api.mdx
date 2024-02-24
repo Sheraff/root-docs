@@ -4,6 +4,9 @@ description: Foo michel
 icon: Cable
 ---
 
+import { Cards, Card } from "fumadocs-ui/components/card"
+import { Cable } from "lucide-react"
+
 Type-safe API client with tanstack query.
 
 ```ts
@@ -14,4 +17,13 @@ const track = useApiQuery(tracksRoute, {
 })
 ```
 
-See [Server API](../server/api) for more information.
+## See also
+
+<Cards>
+	<Card
+		title="Server API"
+		href="../server/api"
+		description="See the server side of this API."
+		icon={<Cable />}
+	/>
+</Cards>

@@ -4,4 +4,24 @@ description: Foo michel
 icon: WifiOff
 ---
 
-The Service Worker caches all of the static assets so the app can be used offline. In combination with the [client database](../client/database), the app can be used offline and sync data when the connection is back.
+import { Cards, Card } from "fumadocs-ui/components/card"
+import { Database } from "lucide-react"
+
+The Service Worker caches all of the static assets so the app can be used offline. In combination with the [client database](../client/database) and [push messaging](./push-messaging.mdx), the app can be used offline and sync data when the connection is back.
+
+## See also
+
+<Cards>
+	<Card
+		title="Client DB"
+		href="../client/database"
+		description="Accessing data while offline using the client database"
+		icon={<Database />}
+	/>
+	<Card
+		title="Client DB"
+		href="../client/database"
+		description="Receiving event when the connection is back with push messaging"
+		icon={<Database />}
+	/>
+</Cards>
