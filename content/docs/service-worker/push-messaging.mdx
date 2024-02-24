@@ -1,0 +1,49 @@
+---
+title: Push Messaging
+description: Foo michel
+icon: Webhook
+---
+
+In an offline-first application, the server can push asynchronous messages to the client, to be delivered next time the client is online. This can be seen as a webhook mechanism, exposed by the client for the server to call.
+
+Push messaging shouldn't be used to transfer large amounts of data, but rather to notify the client that new data is available to be fetched, or than an event has occurred while the client was offline.
+
+## Enable push messaging
+
+Because of spammers, to enable push messaging, browsers require a few steps:
+
+-   a user interaction,
+-   and explicit notification permission
+
+```tsx title="client/Component.tsx"
+const { data: sw } = useServiceWorker()
+
+const onClick = () => void Notification.requestPermission()
+	.then(() => sw.postMessage({ type: "SUBSCRIBE" }))
+	.catch(console.error)
+
+<button onClick={onClick}>
+	Enable push synchronization
+</button>
+```
+
+The `SUBSCRIBE` event will then be handled by the service worker, performing a handshake with the server to share a public key for establishing the subscription. After that, unless the key changes, the client will be able to receive push messages.
+
+An established subscription **must be stored** in the database, so that the server can send messages later on. For this reason, we should **require the user to be authenticated** before a button like in the example above is displayed.
+
+## Send and receive push messages
+
+At any point in time, the server can send a push message to a specific client, identified by its `userId`. Since a user can have registered multiple devices, the `fastify.notify` method will broadcast the message to all devices of the user.
+
+```ts title="server/any-service.ts"
+fastify.notify("[some-user-id]", { type: "FOO", payload: {} })
+```
+
+The Service Worker will then receive the message and dispatch a `push` event, which can be handled to perform any action, such as updating the UI, or fetching new data.
+
+```ts title="worker/src/Push.ts"
+sw.addEventListener("push", (event) => {
+	const { type, payload } = event.data.json() as PushMessage
+	console.log("Received push message", type, payload)
+})
+```
